@@ -1,4 +1,4 @@
-package com.example.navigationdemo
+package linhdo.inface
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

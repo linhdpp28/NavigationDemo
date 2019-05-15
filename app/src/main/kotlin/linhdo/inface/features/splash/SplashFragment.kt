@@ -1,4 +1,4 @@
-package com.example.navigationdemo
+package linhdo.inface.features.splash
 
 import android.content.Context
 import android.os.Bundle
@@ -6,25 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import linhdo.inface.R
+import linhdo.inface.extensions.navigationTo
+import linhdo.inface.extensions.postDelay
 
-class LoginFragment : Fragment() {
-    companion object {
-        fun newInstance(): LoginFragment = LoginFragment()
-    }
+class SplashFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
+        postDelay(2000) {
+            navigationTo(R.id.action_splash_to_login)
+        }
     }
 
     override fun onDetach() {
         super.onDetach()
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = SplashFragment()
     }
 }

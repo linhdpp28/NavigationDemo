@@ -1,4 +1,4 @@
-package com.example.navigationdemo
+package linhdo.inface
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

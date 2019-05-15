@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "974958557986",
+    "firebase_url": "https://navigationdemo-c2fdd.firebaseio.com",
+    "project_id": "navigationdemo-c2fdd",
+    "storage_bucket": "navigationdemo-c2fdd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974958557986:android:3f0f4f80592ed394",
+        "android_client_info": {
+          "package_name": "linhdo.inface"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974958557986-egar9ibbqoi7o73klt57t1p9bapiiukr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "linhdo.inface",
+            "certificate_hash": "ddfbdefc77722dfcf83b6007a3e35a4f2d853bb3"
+          }
+        },
+        {
+          "client_id": "974958557986-f6q7b50dkarinvmqqavrudtdgi1p3pbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcGLZ-fMlTextgGkp0BT0Zse5VLCzmpjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974958557986-f6q7b50dkarinvmqqavrudtdgi1p3pbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
