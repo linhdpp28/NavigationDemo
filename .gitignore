@@ -1,0 +1,13 @@
+*.iml
+.gradle
+*.properties
+/.idea
+.DS_Store
+/build
+/gradle
+/captures
+.externalNativeBuild
+debug/
+proguard-rules.pro
+gradlew
+*.bat
