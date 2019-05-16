@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'io.fabric'
 
@@ -39,7 +38,7 @@ android {
         }
     }
 
-    sourceSets{
+    sourceSets {
         main.java.srcDirs += ['src/main/kotlin']
         androidTest.java.srcDirs += ['src/androidTest/kotlin']
         test.java.srcDirs += ['src/test/kotlin']
@@ -49,20 +48,38 @@ android {
 ext {
     anko_version = '0.10.8'
     firebase_version = '17.0.0'
+    lifecycle_version = '2.2.0-alpha01'
+    ktx_version = '1.1.0-alpha08'
+    room_version = '2.1.0-beta01'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha05'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //KTX
+    implementation 'androidx.core:core-ktx:1.2.0-alpha01'
+    implementation "androidx.fragment:fragment-ktx:$ktx_version"
 
     // Navigation
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
+
+    // Life Cycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation group: 'androidx.lifecycle', name: 'lifecycle-viewmodel-ktx', version: "$lifecycle_version"
+
+    // Room Database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // Paging
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
 
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
@@ -72,12 +89,14 @@ dependencies {
     // Firebase
     implementation "com.google.firebase:firebase-core:16.0.9"
     implementation "com.google.firebase:firebase-auth:$firebase_version"
+    implementation "com.google.firebase:firebase-database:$firebase_version"
 
     // Crashlytics
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
 
     // Testing
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation 'junit:junit:4.13-beta-3'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
 }
+apply plugin: 'com.google.gms.google-services'

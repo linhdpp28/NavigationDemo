@@ -1,6 +1,8 @@
 package linhdo.inface
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
 import linhdo.inface.extensions.getSavedConfigPrefs
 
 class InApplication : Application() {
@@ -15,6 +17,7 @@ class InApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        FirebaseApp.initializeApp(this)
         config.apply {
             language =
                 getSavedConfigPrefs().getString(ConfigKey.LANGUAGE_KEY, Language.English.code) ?: Language.English.code

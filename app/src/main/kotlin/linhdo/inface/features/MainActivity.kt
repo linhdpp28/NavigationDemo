@@ -1,7 +1,10 @@
 package linhdo.inface.features
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
+import kotlinx.android.synthetic.main.activity_main.*
 import linhdo.inface.ConfigKey
 import linhdo.inface.InApplication
 import linhdo.inface.R
@@ -17,12 +20,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun showLoading() {
+        progressBar?.visibility = View.VISIBLE
+    }
+
+    fun hideLoading() {
+        progressBar?.visibility = View.GONE
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        InApplication.instance.let {
-            it.getSavedConfigPrefs().edit().apply {
-                this.putString(ConfigKey.LANGUAGE_KEY, it.config.language)
-            }.apply()
+        InApplication.instance.getSavedConfigPrefs().edit {
+            this.putString(ConfigKey.LANGUAGE_KEY, InApplication.instance.config.language)
         }
     }
 }

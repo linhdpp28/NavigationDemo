@@ -26,7 +26,7 @@ class ForgetPasswordFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_forget_password, container, false)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
     }
 

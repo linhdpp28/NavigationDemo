@@ -3,8 +3,15 @@
 
     <!--Login Fragment-->
     <string name="login_title">Login</string>
-    <string name="login_username_or_email">Username/Email</string>
     <string name="login_password">Password</string>
     <string name="login_register">Not have account? Register</string>
     <string name="login_forgot_password">Forgot password</string>
+    <string name="login_email" translatable="false">Email</string>
+
+    <!--Register Fragment-->
+    <string name="register_title">Register</string>
+    <string name="register_username">Username</string>
+    <string name="register_email" translatable="false">Email</string>
+    <string name="register_password">Password</string>
+    <string name="register_retype_password">Re-type Password</string>
 </resources>

@@ -2,5 +2,10 @@
 <resources>
     <string name="login_password">Mật khẩu</string>
     <string name="login_title">Đăng nhập</string>
-    <string name="login_username_or_email">Tên đăng nhập/Email</string>
+    <string name="login_register">Không có tài khoản? Đăng ký ngay</string>
+    <string name="login_forgot_password">Quên mật khẩu</string>
+    <string name="register_password">Mật khẩu</string>
+    <string name="register_retype_password">Nhập lại mật khẩu</string>
+    <string name="register_title">Đăng ký</string>
+    <string name="register_username">Tên người dùng</string>
 </resources>
