@@ -53,7 +53,7 @@ class LoginFragment : Fragment() {
                 }
                 Status.SUCCESS -> {
                     getMainActivity()?.hideLoading()
-                    navigationTo(R.id.action_login_to_home)
+                    
                 }
                 Status.FAILED -> {
                     getMainActivity()?.hideLoading()

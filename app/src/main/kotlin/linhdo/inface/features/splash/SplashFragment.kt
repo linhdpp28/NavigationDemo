@@ -11,6 +11,8 @@ import linhdo.inface.R
 import linhdo.inface.extensions.getFBAuth
 import linhdo.inface.extensions.navigationTo
 import linhdo.inface.extensions.postDelay
+import linhdo.inface.extensions.startActivity
+import linhdo.inface.features.home.HomeActivity
 
 class SplashFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -20,10 +22,9 @@ class SplashFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         postDelay(2000) {
-            navigationTo(
-                if (InApplication.instance.getFBAuth().currentUser == null) R.id.action_splash_to_login
-                else R.id.action_splash_to_home
-            )
+            if (InApplication.instance.getFBAuth().currentUser == null)
+                navigationTo(R.id.action_splash_to_login)
+            else startActivity<HomeActivity>()
         }
     }
 }

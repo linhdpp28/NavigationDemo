@@ -96,6 +96,17 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/btnHidePassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_visibility"
+        app:layout_constraintBottom_toBottomOf="@+id/tilPassword"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/tilPassword"
+        app:layout_constraintTop_toTopOf="@+id/tilPassword" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRePassword"
         android:layout_width="0dp"
@@ -115,6 +126,17 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/btnHideRePassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_visibility"
+        app:layout_constraintBottom_toBottomOf="@+id/tilRePassword"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/tilRePassword"
+        app:layout_constraintTop_toTopOf="@+id/tilRePassword" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
