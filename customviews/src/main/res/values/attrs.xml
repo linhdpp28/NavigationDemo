@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InFaceToolbar">
+        <attr name="inTitle" format="string" />
+        <attr name="inSubTitle" format="string" />
+        <attr name="leftDrawable" format="enum">
+            <enum name="menu" value="0" />
+            <enum name="backable" value="1" />
+        </attr>
+        <attr name="rightDrawable" format="reference" />
+    </declare-styleable>
+</resources>

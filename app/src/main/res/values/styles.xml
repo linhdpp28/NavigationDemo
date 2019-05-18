@@ -1,24 +1,27 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Base color -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
+
+        <!-- TextView style -->
+        <item name="android:textViewStyle">@style/TextView.Roboto</item>
     </style>
 
-    <style name="AppTheme.Fullscreen" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Base color -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorPrimary</item>
-
-        <!-- Fullscreen -->
+    <!-- Application theme fullscreen -->
+    <style name="AppTheme.Fullscreen" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- Style for AppCompatTextView-->
+    <style name="TextView.Roboto" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
 </resources>

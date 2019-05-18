@@ -1,14 +1,15 @@
 package linhdo.inface.features.home
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.view.GravityCompat
 import kotlinx.android.synthetic.main.activity_home.*
 import linhdo.inface.ConfigKey
 import linhdo.inface.InApplication
 import linhdo.inface.R
 import linhdo.inface.extensions.getSavedConfigPrefs
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -18,14 +19,16 @@ class HomeActivity : AppCompatActivity() {
 
         if (savedInstanceState != null && !savedInstanceState.isEmpty) {
         }
+
+        toolbar?.setOnLeftClickListener {
+            if (it == R.drawable.ic_menu) {
+                drawer?.openDrawer(GravityCompat.START)
+            } else onBackPressed()
+        }
     }
 
-    fun showLoading() {
-        progressBar?.visibility = View.VISIBLE
-    }
-
-    fun hideLoading() {
-        progressBar?.visibility = View.GONE
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onDestroy() {
