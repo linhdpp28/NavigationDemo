@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.getDrawableOrThrow
 import kotlinx.android.synthetic.main.inface_toolbar.view.*
 import linhdo.customviews.logging.InLogging
-import linhdo.customviews.logging.Logger
 
 /***
  * @author: Lac
@@ -76,7 +75,7 @@ class InFaceToolbar @JvmOverloads constructor(context: Context, attrs: Attribute
             setImageResource(leftIconType.idRes)
             setOnClickListener {
                 if (::onLeftClick.isInitialized) onLeftClick(leftIconType.idRes)
-                else InLogging(context, "Left button listener still not implementation", Logger.ERROR)
+                else InLogging.inError(context, "Left button listener still not implementation")
             }
         }
     }
@@ -87,7 +86,7 @@ class InFaceToolbar @JvmOverloads constructor(context: Context, attrs: Attribute
             setImageDrawable(iconDrawable)
             setOnClickListener {
                 if (::onRightClick.isInitialized) onRightClick()
-                else InLogging(context, "Right button listener still not implementation", Logger.ERROR)
+                else InLogging.inError(context, "Right button listener still not implementation")
             }
         }
     }

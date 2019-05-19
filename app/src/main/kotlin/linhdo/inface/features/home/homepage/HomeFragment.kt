@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
+import linhdo.customviews.logging.InLogging
 import linhdo.inface.R
-import linhdo.inface.extensions.error
 import linhdo.inface.extensions.setSubTitle
 
 /***
@@ -28,9 +28,9 @@ class HomeFragment : Fragment() {
 
         recyclerView?.adapter = HomeAdapter {
             when (it) {
-                HomeMenuType.SHOPPING_LIST -> error("navigationTo(ShoppingListFragment)")
-                HomeMenuType.TOP100 -> error("navigationTo(Top100Fragment)")
-                HomeMenuType.NOTHING -> error("Not found Menu Item")
+                HomeMenuType.SHOPPING_LIST -> InLogging.inError(context, "navigationTo(ShoppingListFragment)")
+                HomeMenuType.TOP100 -> InLogging.inError(context, "navigationTo(Top100Fragment)")
+                HomeMenuType.NOTHING -> InLogging.inError(context, "Not found Menu Item")
             }
         }
         recyclerView?.addItemDecoration(object : RecyclerView.ItemDecoration() {

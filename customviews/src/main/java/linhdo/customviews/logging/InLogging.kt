@@ -8,34 +8,53 @@ import org.jetbrains.anko.*
  * 18-May-19 - 5:16 PM
  */
 
-class InLogging(context: Context? = null, message: String, private val type: Logger = Logger.DEBUG) : AnkoLogger {
-    init {
-        logger(context, message)
-    }
-
-    private fun logger(context: Context? = null, message: String) {
-        val i = "|   $loggerTag : $message   |"
-        val line = "-".repeat(i.length)
-        val log = "\n$line\n$i\n$line\n"
-        when (type) {
-            Logger.WARNING -> warn(log)
-            Logger.ERROR -> {
-                error(log)
-                context?.alert(message) {
-                    okButton { it.dismiss() }
-                }?.show()
-            }
-            Logger.INFO -> info(log)
-            Logger.DEBUG -> debug(log)
-            Logger.VERBOSE -> verbose(log)
-        }
-    }
-}
-
-enum class Logger {
+enum class LoggerState {
     WARNING,
     ERROR,
     INFO,
     DEBUG,
     VERBOSE
+}
+
+@Suppress("DataClassPrivateConstructor")
+data class InLogging private constructor(val type: LoggerState, val message: String, val context: Context? = null) : AnkoLogger {
+    init {
+        val i = "|   ${context?.javaClass?.simpleName ?: "INFACE"} : $message   |"
+        val line = "-".repeat(i.length)
+        val log = "$line\n $i\n $line\n"
+        when (type) {
+            LoggerState.WARNING -> warn(log)
+            LoggerState.ERROR -> {
+                error(log)
+                context?.alert(message) {
+                    okButton { it.dismiss() }
+                }?.show()
+            }
+            LoggerState.INFO -> info(log)
+            LoggerState.DEBUG -> debug(log)
+            LoggerState.VERBOSE -> verbose(log)
+        }
+    }
+
+    companion object {
+        fun inError(context: Context? = null, message: String) {
+            InLogging(LoggerState.ERROR, message, context)
+        }
+
+        fun inWarning(message: String) {
+            InLogging(LoggerState.WARNING, message)
+        }
+
+        fun inDebug(message: String) {
+            InLogging(LoggerState.DEBUG, message)
+        }
+
+        fun inInfo(message: String) {
+            InLogging(LoggerState.INFO, message)
+        }
+
+        fun inVerbose(message: String) {
+            InLogging(LoggerState.VERBOSE, message)
+        }
+    }
 }
