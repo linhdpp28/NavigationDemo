@@ -4,10 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 fun Application.getSavedConfigPrefs(): SharedPreferences = getSharedPreferences("CONFIG", Context.MODE_PRIVATE)
 
-fun Application.getFBRef() = FirebaseDatabase.getInstance().reference
+fun Application.getFBDatabase(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
-fun Application.getFBAuth() = FirebaseAuth.getInstance()
+fun Application.getFBAuth(): FirebaseAuth = FirebaseAuth.getInstance()

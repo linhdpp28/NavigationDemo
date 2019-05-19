@@ -12,7 +12,7 @@ interface UserDao {
     fun insert(user: User)
 
     @Query("SELECT * FROM user")
-    fun getUser(): LiveData<User>
+    fun getUser(): LiveData<User?>
 
     @Query("DELETE FROM user")
     fun deleteUser()

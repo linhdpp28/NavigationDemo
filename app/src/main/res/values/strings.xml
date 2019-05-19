@@ -1,17 +1,25 @@
 <resources>
     <string name="app_name" translatable="false">inFace</string>
 
-    <!--Login Fragment-->
+    <!-- Login Fragment -->
     <string name="login_title">Login</string>
     <string name="login_password">Password</string>
     <string name="login_register">Not have account? Register</string>
     <string name="login_forgot_password">Forgot password</string>
     <string name="login_email" translatable="false">Email</string>
 
-    <!--Register Fragment-->
+    <!-- Register Fragment -->
     <string name="register_title">Register</string>
     <string name="register_username">Username</string>
     <string name="register_email" translatable="false">Email</string>
     <string name="register_password">Password</string>
     <string name="register_retype_password">Re-type Password</string>
+
+    <!-- Forgot Password -->
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_sent_request">Send request reset password</string>
+    <string name="forgot_password_email">Receive reset password mail for this email</string>
+
+    <!-- Navigation Side Menu -->
+    <string name="nav_side_menu_logout">Logout</string>
 </resources>

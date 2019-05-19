@@ -15,7 +15,9 @@ import linhdo.inface.R
 import linhdo.inface.ServiceLocator
 import linhdo.inface.extensions.getMainActivity
 import linhdo.inface.extensions.navigationTo
+import linhdo.inface.extensions.startActivity
 import linhdo.inface.features.auth.AuthViewModel
+import linhdo.inface.features.home.HomeActivity
 import linhdo.inface.utils.status.Status
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.okButton
@@ -53,7 +55,7 @@ class LoginFragment : Fragment() {
                 }
                 Status.SUCCESS -> {
                     getMainActivity()?.hideLoading()
-                    
+                    startActivity<HomeActivity>()
                 }
                 Status.FAILED -> {
                     getMainActivity()?.hideLoading()

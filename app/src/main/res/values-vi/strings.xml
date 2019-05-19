@@ -8,4 +8,8 @@
     <string name="register_retype_password">Nhập lại mật khẩu</string>
     <string name="register_title">Đăng ký</string>
     <string name="register_username">Tên người dùng</string>
+    <string name="forgot_password_email">Nhận mail reset lại mật khẩu cho email này</string>
+    <string name="forgot_password_sent_request">Gửi yêu cầu reset mật khẩu</string>
+    <string name="forgot_password_title">Quên mật khẩu</string>
+    <string name="nav_side_menu_logout">Đăng xuất</string>
 </resources>

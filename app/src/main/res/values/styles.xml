@@ -9,6 +9,9 @@
 
         <!-- TextView style -->
         <item name="android:textViewStyle">@style/TextView.Roboto</item>
+
+        <!-- Toolbar style -->
+        <item name="toolbarStyle">@style/Toolbar.WhiteLabel</item>
     </style>
 
     <!-- Application theme fullscreen -->
@@ -22,6 +25,13 @@
     <!-- Style for AppCompatTextView-->
     <style name="TextView.Roboto" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <!-- Style for Toolbar -->
+    <style name="Toolbar.WhiteLabel" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="subtitleTextColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/amarante</item>
     </style>
 
 </resources>

@@ -2,14 +2,16 @@ package linhdo.inface.repositories.inDb
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import linhdo.customviews.logging.InLogging
 import linhdo.inface.db.user.User
 import linhdo.inface.db.user.UserDao
 
 class UserRepository(private val userDao: UserDao) {
-    val user: LiveData<User> = userDao.getUser()
+    val user: LiveData<User?> = userDao.getUser()
 
     @WorkerThread
     suspend fun insert(user: User) {
+        InLogging.inDebug(user.username + " - " + user.email)
         userDao.insert(user)
     }
 

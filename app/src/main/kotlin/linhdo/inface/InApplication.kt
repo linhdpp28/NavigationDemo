@@ -2,7 +2,7 @@ package linhdo.inface
 
 import android.app.Application
 import com.google.firebase.FirebaseApp
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseAuth
 import linhdo.inface.extensions.getSavedConfigPrefs
 
 class InApplication : Application() {
@@ -20,8 +20,10 @@ class InApplication : Application() {
         FirebaseApp.initializeApp(this)
         config.apply {
             language =
-                getSavedConfigPrefs().getString(ConfigKey.LANGUAGE_KEY, Language.English.code) ?: Language.English.code
+                    getSavedConfigPrefs().getString(ConfigKey.LANGUAGE_KEY, Language.English.code)
+                            ?: Language.English.code
         }
+        FirebaseAuth.getInstance().setLanguageCode(config.language)
     }
 
     data class Config(val version: String = BuildConfig.VERSION_NAME) {

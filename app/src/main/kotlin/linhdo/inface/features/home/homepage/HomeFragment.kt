@@ -1,13 +1,11 @@
 package linhdo.inface.features.home.homepage
 
 import android.content.Context
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
 import linhdo.customviews.logging.InLogging
 import linhdo.inface.R
@@ -33,13 +31,6 @@ class HomeFragment : Fragment() {
                 HomeMenuType.NOTHING -> InLogging.inError(context, "Not found Menu Item")
             }
         }
-        recyclerView?.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-                val position = parent.getChildLayoutPosition(view)
-                if (position == 0 || position == 1) outRect.bottom = 8
-                if (position == 0 || position == 2) outRect.right = 8
-            }
-        })
     }
 
     override fun onAttach(context: Context) {
