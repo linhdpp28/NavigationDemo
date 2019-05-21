@@ -8,17 +8,17 @@ import linhdo.inface.db.user.User
 import linhdo.inface.db.user.UserDao
 
 @Database(
-    entities = arrayOf(User::class),
-    version = 1,
+        entities = [User::class],
+        version = 2,
     exportSchema = false
 )
-abstract class inFaceDB : RoomDatabase() {
+abstract class InFaceDB : RoomDatabase() {
     companion object {
-        fun create(context: Context, useInMemory: Boolean): inFaceDB {
+        fun create(context: Context, useInMemory: Boolean): InFaceDB {
             val dbBuilder = if (useInMemory) {
-                Room.inMemoryDatabaseBuilder(context, inFaceDB::class.java)
+                Room.inMemoryDatabaseBuilder(context, InFaceDB::class.java)
             } else {
-                Room.databaseBuilder(context, inFaceDB::class.java, "inface.db")
+                Room.databaseBuilder(context, InFaceDB::class.java, "inface.db")
             }
             return dbBuilder.fallbackToDestructiveMigration().build()
         }

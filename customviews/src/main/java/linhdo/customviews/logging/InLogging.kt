@@ -2,6 +2,7 @@ package linhdo.customviews.logging
 
 import android.content.Context
 import org.jetbrains.anko.*
+import java.io.Serializable
 
 /***
  * @author: Lac
@@ -17,7 +18,7 @@ enum class LoggerState {
 }
 
 @Suppress("DataClassPrivateConstructor")
-data class InLogging private constructor(val type: LoggerState, val message: String, val context: Context? = null) : AnkoLogger {
+data class InLogging private constructor(val type: LoggerState, val message: String, val context: Context? = null) : AnkoLogger, Serializable {
     init {
         val i = "|   ${context?.javaClass?.simpleName ?: "INFACE"} : $message   |"
         val line = "-".repeat(i.length)

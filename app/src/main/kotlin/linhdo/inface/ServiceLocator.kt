@@ -2,7 +2,7 @@ package linhdo.inface
 
 import android.app.Application
 import android.content.Context
-import linhdo.inface.db.inFaceDB
+import linhdo.inface.db.InFaceDB
 import linhdo.inface.repositories.inDb.UserRepository
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -42,7 +42,7 @@ open class DefaultServiceLocator(val app: Application, val useInMemoryDb: Boolea
     private val NETWORK_IO = Executors.newFixedThreadPool(5)
 
     private val db by lazy {
-        inFaceDB.create(app, useInMemoryDb)
+        InFaceDB.create(app, useInMemoryDb)
     }
 
     override fun getNetworkExecutor(): Executor = NETWORK_IO

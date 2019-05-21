@@ -13,14 +13,13 @@ import linhdo.inface.ConfigKey
 import linhdo.inface.InApplication
 import linhdo.inface.R
 import linhdo.inface.ServiceLocator
-import linhdo.inface.extensions.getFBAuth
 import linhdo.inface.extensions.getSavedConfigPrefs
 import linhdo.inface.extensions.startActivity
 import linhdo.inface.features.auth.MainActivity
 
 
 class HomeActivity : AppCompatActivity() {
-    val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +48,8 @@ class HomeActivity : AppCompatActivity() {
         navigationSideMenu?.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.mnuLogout -> {
-                    InApplication.instance.getFBAuth().apply {
-                        signOut()
-                        startActivity<MainActivity>()
-                    }
+                    viewModel.logout()
+                    startActivity<MainActivity>()
                     true
                 }
                 else -> false

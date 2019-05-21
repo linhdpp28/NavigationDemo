@@ -7,13 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import linhdo.customviews.logging.InLogging
-import linhdo.inface.InApplication
 import linhdo.inface.LoginErrMessage
 import linhdo.inface.db.user.User
 import linhdo.inface.extensions.emailValidator
 import linhdo.inface.extensions.getFBAuth
-import linhdo.inface.extensions.getFBDatabase
 import linhdo.inface.repositories.inDb.UserRepository
 import linhdo.inface.utils.status.NetworkState
 
@@ -64,36 +61,19 @@ class AuthViewModel : ViewModel() {
             workStatus.postValue(NetworkState.error(err))
             return
         }
-        InApplication.instance.getFBAuth().signInWithEmailAndPassword(account.first, account.second)
+        getFBAuth().signInWithEmailAndPassword(account.first, account.second)
                 .addOnSuccessListener {
                     viewModelScope.launch { if (it.user != null) getUserDetail(it.user) }
+
                 }
                 .addOnFailureListener {
                     workStatus.postValue(NetworkState.error(it.localizedMessage))
                 }
     }
 
-    private fun getUserDetail(fbUser: FirebaseUser) {
-        InApplication.instance.getFBDatabase().collection("users").document(fbUser.uid).get()
-                .addOnSuccessListener { snapshot ->
-                    //TODO(Cannot access database on the main thread)
-                    val user = User()
-                    snapshot.data?.forEach {
-                        InLogging.inInfo("${it.key} : ${it.value}")
-                        when (it.key) {
-                            "username" -> user.username = it.value as? String ?: ""
-                            "userId" -> user.userId = it.value as? String ?: ""
-                            "email" -> user.email = it.value as? String ?: ""
-                        }
-                    }
-                    viewModelScope.launch {
-                        repo?.insert(user)
-                        workStatus.postValue(NetworkState.LOADED)
-                    }
-                }
-                .addOnFailureListener {
-                    workStatus.postValue(NetworkState.error(it.localizedMessage))
-                }
+    private suspend fun getUserDetail(fbUser: FirebaseUser) {
+        repo?.insert(fbUser)
+        workStatus.postValue(NetworkState.LOADED)
     }
 
     fun register(detail: Pair<String, String>, passwords: Pair<String, String>) {
@@ -108,20 +88,17 @@ class AuthViewModel : ViewModel() {
             workStatus.postValue(NetworkState.error(err))
             return
         }
-        InApplication.instance.getFBAuth().createUserWithEmailAndPassword(detail.second, passwords.first)
+        getFBAuth().createUserWithEmailAndPassword(detail.second, passwords.first)
                 .addOnSuccessListener {
-                    if (it.user != null) updateUserDetail(it.user.uid, username = detail.first, email = detail.second)
-                    InApplication.instance.getFBAuth().signOut()
+                    viewModelScope.launch {
+                        if (it.user != null)
+                            repo?.pushNewUser(User(it.user.uid, email = detail.second, username = detail.first))
+                    }
+                    getFBAuth().signOut()
                 }
                 .addOnFailureListener {
                     workStatus.postValue(NetworkState.error(it.localizedMessage))
                 }
-    }
-
-    private fun updateUserDetail(userId: String, username: String, email: String) {
-        val user = InApplication.instance.getFBDatabase().collection("users")
-        val data = User(userId, username, email)
-        user.document(userId).set(data)
     }
 
     fun forgotPassword(email: String) {
@@ -132,7 +109,7 @@ class AuthViewModel : ViewModel() {
             return
         }
 
-        InApplication.instance.getFBAuth().sendPasswordResetEmail(email)
+        getFBAuth().sendPasswordResetEmail(email)
                 .addOnSuccessListener {
                     workStatus.postValue(NetworkState.LOADED)
                 }

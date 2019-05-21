@@ -2,7 +2,10 @@ package linhdo.inface.features.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import linhdo.inface.db.user.User
+import linhdo.inface.extensions.getFBAuth
 import linhdo.inface.repositories.inDb.UserRepository
 
 /***
@@ -15,7 +18,12 @@ class HomeViewModel : ViewModel() {
         this.userRepo = repository
     }
 
-    fun getUserDetail(): LiveData<User?>? {
-        return userRepo?.user
+    fun getUserDetail(): LiveData<User>? = userRepo?.user
+
+    fun logout() {
+        getFBAuth().signOut()
+        viewModelScope.launch {
+            userRepo?.delete()
+        }
     }
 }
